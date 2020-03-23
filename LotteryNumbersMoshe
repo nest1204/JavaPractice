@@ -1,0 +1,109 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Main{
+
+    public static void main (String[] args) {
+
+
+        ArrayList<Integer> sal2 = new ArrayList<>();
+        for (int c = 0; c < 50; c++) {
+            sal2.add(0);
+        }
+
+        System.out.println("How many times?");
+        Scanner scanner = new Scanner(System.in);
+        int userInput = scanner.nextInt();
+
+        for (int e = 0; e < userInput; e++) {
+            ArrayList<Integer> sal = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                int randomNumber = ThreadLocalRandom.current().nextInt(1, 51);
+
+                if (!sal.contains(randomNumber)) {
+                    sal.add(randomNumber);
+                    sal2.set((randomNumber - 1), sal2.get(randomNumber - 1) + 1);
+                } else {
+                    i--;
+                }
+            }
+            System.out.print(sal + "   ");
+
+        }
+
+        ArrayList<Integer> numberOrder = new ArrayList<>();
+        for (int c = 0; c < 50; c++) {
+            numberOrder.add(c + 1);
+        }
+        System.out.print("\n\nNo:");
+        for(int i = 0; i < 50; i++) {
+            int count = 0, num = sal2.get(i);
+            for(; num != 0; num /= 10, ++count);
+            System.out.print(" ");
+            if (count == 0) {
+                System.out.print(" ");
+            }
+            else {
+                for (int e = 0; e < count; e++) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.print(numberOrder.get(i));
+        }
+
+
+        System.out.print("\n    [");
+        for (int c = 0; c < 50; c++) {
+            if (numberOrder.get(c) < 10)
+                System.out.print(sal2.get(c) + ", ");
+            else {
+                System.out.print(" " + sal2.get(c) + ", ");
+            }
+        }
+
+        System.out.println("\b\b]\n\n");
+       
+       
+       
+        for(int d = 0; d < 5;) {
+            for (int y = 0; y < 50; y++) {
+                boolean biggestNumber = true;
+                for (int u = 0; u < 50; u++) {
+                    if (sal2.get(y) < sal2.get(u)) {
+                        biggestNumber = false;
+                    }
+                }
+                if (biggestNumber && (d < 5)) {
+                    d++;
+                    System.out.print(y + 1 + "   ");
+                    sal2.set((y), 0);
+                    biggestNumber = false;
+                }
+            }
+        }
+
+
+        /*
+
+        // Moshe's try
+
+        ArrayList<Integer> sal2Copy = new ArrayList<>();
+        sal2Copy = sal2;
+        System.out.println("sal2:     " + sal2);
+        System.out.println("sal2Copy: " + sal2Copy);
+        ArrayList<Integer> highest = new ArrayList<>();
+        while (highest.size() <= 5) {
+            for (int i = 0; i < 50; i++) {
+                if ((sal2Copy.get(i).equals(Collections.max(sal2Copy))) && (highest.size() < 5)) {
+                    highest.add(i + 1);
+                    sal2Copy.set(i, -1);
+                }
+            }
+        }
+        System.out.println("highest: " + highest);
+        */
+
+    }
+    }
