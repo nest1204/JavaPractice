@@ -7,39 +7,40 @@ public class Main{
 
     public static void main (String[] args) {
 
-
-        ArrayList<Integer> sal2 = new ArrayList<>();
+        // Creating an array of 50 elements for storing amount of times.
+        ArrayList<Integer> amountOfTimesArray = new ArrayList<>();
         for (int c = 0; c < 51; c++) {
-            sal2.add(0);
+            amountOfTimesArray.add(0);
         }
 
+        // Taking amount of times input
         System.out.println("How many times?");
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
 
+        //Running arrays with 5 random numbers user's amount of time
         for (int e = 0; e < userInput; e++) {
-            ArrayList<Integer> sal = new ArrayList<>();
+            ArrayList<Integer> temporaryArrays = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 int randomNumber = ThreadLocalRandom.current().nextInt(1, 51);
-
-                if (!sal.contains(randomNumber)) {
-                    sal.add(randomNumber);
-                    sal2.set((randomNumber - 1), sal2.get(randomNumber - 1) + 1);
+                if (!temporaryArrays.contains(randomNumber)) {
+                    temporaryArrays.add(randomNumber);
+                    amountOfTimesArray.set((randomNumber - 1), amountOfTimesArray.get(randomNumber - 1) + 1);
                 } else {
                     i--;
                 }
             }
-            System.out.print(sal + "   ");
-
+            System.out.print(temporaryArrays + "   ");
         }
 
+        // Printing numbers 1-50
         ArrayList<Integer> numberOrder = new ArrayList<>();
         for (int c = 0; c < 50; c++) {
             numberOrder.add(c + 1);
         }
         System.out.print("\n\nNo:");
         for(int i = 0; i < 50; i++) {
-            int count = 0, num = sal2.get(i);
+            int count = 0, num = amountOfTimesArray.get(i);
             for(; num != 0; num /= 10, ++count);
             System.out.print(" ");
             if (count == 0) {
@@ -53,45 +54,50 @@ public class Main{
             System.out.print(numberOrder.get(i));
         }
 
-
+        // Printing amount of times every number was appeared in random
         System.out.print("\n    [");
         for (int c = 0; c < 50; c++) {
             if (numberOrder.get(c) < 10)
-                System.out.print(sal2.get(c) + ", ");
+                System.out.print(amountOfTimesArray.get(c) + ", ");
             else {
-                System.out.print(" " + sal2.get(c) + ", ");
+                System.out.print(" " + amountOfTimesArray.get(c) + ", ");
             }
         }
+
 
         System.out.println("\b\b]\n\n");
 
 
-        //2-nd try. (less loops/ Collections.max/ printing first 5 variables in array instead of the whole array
-        ArrayList<Integer> sal2Copy = new ArrayList<>();
-        sal2Copy = sal2;
+        // Printing 5 numbers that appeared most of the times
+        ArrayList<Integer> copyOfAmountOfTimesArray = new ArrayList<>();
+        copyOfAmountOfTimesArray = amountOfTimesArray;
         ArrayList<Integer> highestNumbers = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            highestNumbers.add(sal2Copy.indexOf(Collections.max(sal2Copy)) + 1);
-            sal2Copy.set((sal2Copy.indexOf(Collections.max(sal2Copy))), -1);
+            highestNumbers.add(copyOfAmountOfTimesArray.indexOf(Collections.max(copyOfAmountOfTimesArray)) + 1);
+            copyOfAmountOfTimesArray.set((copyOfAmountOfTimesArray.indexOf(Collections.max(copyOfAmountOfTimesArray))), -1);
         }
         System.out.println("5 highest numbers: " + highestNumbers);
 
+    }
+    }
 
 
-                /*
+    
+    //First 2 tries of printing 5 highest numbers
+     /*
         //1-st try (working version)
         for(int d = 0; d < 5;) {
             for (int y = 0; y < 50; y++) {
                 boolean biggestNumber = true;
                 for (int u = 0; u < 50; u++) {
-                    if (sal2.get(y) < sal2.get(u)) {
+                    if (amountOfTimesArray.get(y) < amountOfTimesArray.get(u)) {
                         biggestNumber = false;
                     }
                 }
                 if (biggestNumber && (d < 5)) {
                     d++;
                     System.out.print(y + 1 + "   ");
-                    sal2.set((y), 0);
+                    amountOfTimesArray.set((y), 0);
                     biggestNumber = false;
                 }
             }
@@ -100,21 +106,18 @@ public class Main{
 
         /*
         // Moshe's try
-        ArrayList<Integer> sal2Copy = new ArrayList<>();
-        sal2Copy = sal2;
-        System.out.println("sal2:     " + sal2);
-        System.out.println("sal2Copy: " + sal2Copy);
+        ArrayList<Integer> copyOfAmountOfTimesArray = new ArrayList<>();
+        copyOfAmountOfTimesArray = amountOfTimesArray;
+        System.out.println("amountOfTimesArray:     " + amountOfTimesArray);
+        System.out.println("copyOfAmountOfTimesArray: " + copyOfAmountOfTimesArray);
         ArrayList<Integer> highest = new ArrayList<>();
         while (highest.size() <= 5) {
             for (int i = 0; i < 50; i++) {
-                if ((sal2Copy.get(i).equals(Collections.max(sal2Copy))) && (highest.size() < 5)) {
+                if ((copyOfAmountOfTimesArray.get(i).equals(Collections.max(copyOfAmountOfTimesArray))) && (highest.size() < 5)) {
                     highest.add(i + 1);
-                    sal2Copy.set(i, -1);
+                    copyOfAmountOfTimesArray.set(i, -1);
                 }
             }
         }
         System.out.println("highest: " + highest);
         */
-
-    }
-    }
