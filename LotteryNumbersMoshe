@@ -9,7 +9,7 @@ public class Main{
 
 
         ArrayList<Integer> sal2 = new ArrayList<>();
-        for (int c = 0; c < 50; c++) {
+        for (int c = 0; c < 51; c++) {
             sal2.add(0);
         }
 
@@ -64,9 +64,22 @@ public class Main{
         }
 
         System.out.println("\b\b]\n\n");
-       
-       
-       
+
+
+        //2-nd try. (less loops/ Collections.max/ printing first 5 variables in array instead of the whole array
+        ArrayList<Integer> sal2Copy = new ArrayList<>();
+        sal2Copy = sal2;
+        ArrayList<Integer> highestNumbers = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            highestNumbers.add(sal2Copy.indexOf(Collections.max(sal2Copy)) + 1);
+            sal2Copy.set((sal2Copy.indexOf(Collections.max(sal2Copy))), -1);
+        }
+        System.out.println("5 highest numbers: " + highestNumbers);
+
+
+
+                /*
+        //1-st try (working version)
         for(int d = 0; d < 5;) {
             for (int y = 0; y < 50; y++) {
                 boolean biggestNumber = true;
@@ -83,12 +96,10 @@ public class Main{
                 }
             }
         }
-
+        */
 
         /*
-
         // Moshe's try
-
         ArrayList<Integer> sal2Copy = new ArrayList<>();
         sal2Copy = sal2;
         System.out.println("sal2:     " + sal2);
