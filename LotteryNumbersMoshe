@@ -1,3 +1,7 @@
+// This program will ask you how many times you want to return 5 random numbers for lottery. 
+// And then it will print you what numbers appeared the most
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
