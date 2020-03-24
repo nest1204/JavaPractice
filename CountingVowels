@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args) {
+
+        //Counting Vowels program
+
+        //Taking user's input
+        System.out.println("Write me anything you want (text):");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        //Converting String to an Array
+        String[] userInputA = userInput.split("");
+
+        //Converting the Array to ArrayList
+        ArrayList<String> userinputAL = new ArrayList<String>();
+        for (int i = 0; i < userInput.length(); i++) {
+            userinputAL.add(userInputA[i]);
+        }
+
+        //Creating an Array and storing all the vowels.
+        ArrayList<Integer> allVowels = new ArrayList<Integer>();
+        int letterA = 0, letterE = 0, letterI = 0, letterO = 0, letterU = 0;
+        for (int i = 0; i < userinputAL.size(); i++) {
+            if (userinputAL.contains("a")) {
+                allVowels.add(userinputAL.indexOf("a"));
+                userinputAL.set((userinputAL.indexOf("a")), "-1");
+                letterA++;
+            }
+            if (userinputAL.contains("e")) {
+                allVowels.add(userinputAL.indexOf("e"));
+                userinputAL.set((userinputAL.indexOf("e")), "-1");
+                letterE++;
+            }
+            if (userinputAL.contains("i")) {
+                allVowels.add(userinputAL.indexOf("i"));
+                userinputAL.set((userinputAL.indexOf("i")), "-1");
+                letterI++;
+            }
+            if (userinputAL.contains("o")) {
+                allVowels.add(userinputAL.indexOf("o"));
+                userinputAL.set((userinputAL.indexOf("o")), "-1");
+                letterO++;
+            }
+            if (userinputAL.contains("u")) {
+                allVowels.add(userinputAL.indexOf("u"));
+                userinputAL.set((userinputAL.indexOf("u")), "-1");
+                letterU++;
+            }
+        }
+        System.out.println("\nThere is " + allVowels.size() + " vowels in your text.");
+
+        System.out.println("\nLetter a - " + letterA + "times");
+        System.out.println("Letter e - " + letterE + "times");
+        System.out.println("Letter i - " + letterI + "times");
+        System.out.println("Letter o - " + letterO + "times");
+        System.out.println("Letter u - " + letterU + "times");
+    }
+    }
