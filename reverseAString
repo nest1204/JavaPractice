@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main{
+
+    public static void main (String[] args) {
+
+        // Reverse a String program
+
+        System.out.println("You are running the program that reverse everything you write.");
+        System.out.println("Enter some text: ");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+
+        System.out.println("Reversed text is:");
+        for(int i = userInput.length(); i > 0; i--) {
+            char ch = userInput.charAt(i - 1);
+            System.out.print(ch);
+        }
+    }
+    }
