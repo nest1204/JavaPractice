@@ -14,8 +14,7 @@ public class Main{
 
         System.out.println("Reversed text is:");
         for(int i = userInput.length(); i > 0; i--) {
-            char ch = userInput.charAt(i - 1);
-            System.out.print(ch);
+            System.out.print(userInput.charAt(i - 1));
         }
     }
-    }
+}
