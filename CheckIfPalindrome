@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.lang.*;
+
+public class Main{
+
+    public static void main (String[] args) {
+
+        // Check if Palindrome program
+        // The program can also check the phrases, as it doesn't look at any
+        // spaces, and Case InSeNsItIvE.
+
+        //Taking user input
+        System.out.println("You are running the program that checks if the word (or a phrase) is a Palindrome.");
+        System.out.println("(a Palindrome is a word that reads the same forwards AND backwards)");
+        System.out.print("\nEnter the word: ");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        //Converting userInput String to an ArrayList
+        ArrayList<Character> arrayInput = new ArrayList<Character>();
+        for(int i = 0; i < userInput.length(); i++) {
+            char ch = userInput.charAt(i);
+            if (ch != ' ' && ch != ',' && ch != '!' && ch != '.' && ch != '?' && ch != '-' && ch != '\'') {
+                ch = Character.toLowerCase(ch);
+                arrayInput.add(ch);
+            }
+        }
+
+        //Converting userInput String to a reversed ArrayList
+        ArrayList<Character> reversedArrayInput = new ArrayList<Character>();
+        for(int i = userInput.length(); i > 0; i--) {
+            char ch = userInput.charAt(i - 1);
+            if (ch != ' ' && ch != ',' && ch != '!' && ch != '.' && ch != '?' && ch != '-' && ch != '\'') {
+                ch = Character.toLowerCase(ch);
+                reversedArrayInput.add(ch);
+            }
+        }
+
+        //System.out.println("test: " + arrayInput + "\n" + reversedArrayInput);
+
+        //Comparing two ArrayLists
+        if (arrayInput.equals(reversedArrayInput)) {
+            System.out.println("The word is a Palindrome.");
+        }
+        else {
+            System.out.println("The word is NOT a Palindrome.");
+        }
+    }
+}
