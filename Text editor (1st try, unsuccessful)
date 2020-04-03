@@ -1,0 +1,168 @@
+package com.company;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+import static com.sun.deploy.cache.Cache.exists;
+
+public class Main {
+    public static void main(String[] args) {
+
+        //Text editor program
+        /*
+        System.out.println("     Text Editor     ");
+        System.out.println("---------------------");
+        System.out.println("MENU:      1. - Create A New TXT File");
+        System.out.println();
+        System.out.println("           2. - Open an Existing File");
+
+        Scanner scanner = new Scanner(System.in);
+        int menuChoice = scanner.nextInt();
+
+
+        if (menuChoice == 1) {
+            System.out.println("1. - Create a New File (recommended)");
+            System.out.println("2. - Create a New File using YOUR Filepath");
+            Scanner scannerNewTXT = new Scanner(System.in);
+            int menuChoiceNewTXT = scannerNewTXT.nextInt();
+            if (menuChoiceNewTXT == 1) {
+                createNewFileWithinJava();
+            }
+            else if (menuChoiceNewTXT == 2) {
+                createNewFileOutsideJava();
+            }
+        }
+
+         */
+
+
+        writeToFileOutsideJava();
+        //writeToFileWithinJava();
+
+
+    }
+
+
+
+
+
+
+
+
+    static void createNewFileWithinJava() {
+        //File name input
+        System.out.print("File Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String createdFileName = scanner.nextLine();
+
+        //Creating a new File
+        try {
+            File myObj = new File(createdFileName + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+
+    static void createNewFileOutsideJava() {
+        //Directory input
+        System.out.println("Write your directory in format: C:\\Users\\nest1\\Desktop\\Different Stuff");
+        System.out.print("Directory: ");
+        Scanner scan = new Scanner(System.in);
+        String createdFilePath = scan.nextLine();
+
+        //File name input
+        System.out.print("File Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String createdFileName = scanner.nextLine();
+
+        //File creating
+        try {
+            File myObj = new File(createdFilePath + "\\" + createdFileName + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+
+    static void writeToFileWithinJava() {
+
+        boolean repeat = true;
+
+        while(repeat) {
+                System.out.print("Write a name of an existing File: ");
+            Scanner scanner = new Scanner(System.in);
+            String inProgramFileName = scanner.nextLine();
+            File inProgramFile = new File(inProgramFileName + ".txt");
+
+            if (inProgramFile.exists()) {
+                fileWriter(inProgramFileName);
+                repeat = false;
+            }
+            else {
+                System.out.println("File does not exist.");
+                System.out.println("1. - Create a New File  \"" + inProgramFileName + ".txt\"");
+                System.out.println("2. - Try Again");
+
+                Scanner scannerTwo = new Scanner(System.in);
+                int menuChoiceTwo = scannerTwo.nextInt();
+                if(menuChoiceTwo == 1) {
+                    fileWriter(inProgramFileName);
+                    repeat = false;
+                }
+            }
+        }
+    }
+
+
+    static void fileWriter(String x) {
+        String allFileData = "";
+        try {
+            File myObj = new File(x + ".txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                allFileData = (allFileData + "\n" + data);
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter(x + ".txt");
+            System.out.println("Write your text: ");
+
+            Scanner scannerWriter = new Scanner(System.in);
+            String stringWriter = scannerWriter.nextLine();
+
+            myWriter.write(allFileData + "\n" + stringWriter);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+
+    static void writeToFileOutsideJava() {
+
+    }
+}
