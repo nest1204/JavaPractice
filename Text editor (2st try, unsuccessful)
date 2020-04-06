@@ -11,22 +11,23 @@ public class Main {
     public static void main(String[] args) {
 
         //Text editor program
-        /*
-        System.out.println("     Text Editor     ");
-        System.out.println("---------------------");
-        System.out.println("MENU:      1. - Create A New TXT File");
-        System.out.println();
-        System.out.println("           2. - Open an Existing File");
+        System.out.println("        Text Editor        ");
+        System.out.println("---------------------------\n");
+        System.out.println("        Menu               ");
+        System.out.println("1. - Create a New File");
+        System.out.println("2. - Open an Existing File");
+        //System.out.println("3. - Edit an Existing File"); will be after you opened a file
 
         Scanner scanner = new Scanner(System.in);
         int menuChoice = scanner.nextInt();
 
-
         if (menuChoice == 1) {
             System.out.println("1. - Create a New File (recommended)");
             System.out.println("2. - Create a New File using YOUR Filepath");
+
             Scanner scannerNewTXT = new Scanner(System.in);
             int menuChoiceNewTXT = scannerNewTXT.nextInt();
+
             if (menuChoiceNewTXT == 1) {
                 createNewFileWithinJava();
             }
@@ -34,13 +35,6 @@ public class Main {
                 createNewFileOutsideJava();
             }
         }
-
-         */
-
-
-        writeToFileOutsideJava();
-        //writeToFileWithinJava();
-
 
     }
 
@@ -59,7 +53,7 @@ public class Main {
 
         //Creating a new File
         try {
-            File myObj = new File(createdFileName + ".txt");
+            File myObj = new File("C:\\Users\\nest1\\Desktop\\Different Stuff\\Java Text Editor Program Files" + createdFileName + ".txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -69,6 +63,10 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        System.out.println("Your TXT File is created.\nYou can find it at C:\\Users\\nest1\\Desktop\\Different Stuff\\Java Text Editor Program Files\\");
+        System.out.println("\nWrite into the file");
+        //Not finished
+
     }
 
 
@@ -104,7 +102,7 @@ public class Main {
         boolean repeat = true;
 
         while(repeat) {
-                System.out.print("Write a name of an existing File: ");
+            System.out.print("Write a name of an existing File: ");
             Scanner scanner = new Scanner(System.in);
             String inProgramFileName = scanner.nextLine();
             File inProgramFile = new File(inProgramFileName + ".txt");
@@ -162,7 +160,5 @@ public class Main {
     }
 
 
-    static void writeToFileOutsideJava() {
 
-    }
 }
