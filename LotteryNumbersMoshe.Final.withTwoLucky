@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Main{
+public class Driver{
 
     public static void main (String[] args) {
 
@@ -71,6 +71,48 @@ public class Main{
 
         System.out.println("\b\b]\n\n");
 
+        System.out.println("\n\n - - - LUCKY NUMBERS - - -\n");
+        ////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        // 2 Lucky Numbers
+
+        //Creating an Array of 12 elements for storing amount of times
+        ArrayList<Integer> amountOfTimesArray2LN = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            amountOfTimesArray2LN.add(0);
+        }
+
+        System.out.println("Amount of times is: " + userInput);
+
+        //Running arrays with 2 random numbers user's amount of times
+        for(int i = 0; i < userInput; i++) {
+            ArrayList<Integer> tempArrays = new ArrayList<>();
+            for(int e = 0; e < 2; e++) {
+                int randomNumberLN = ThreadLocalRandom.current().nextInt(1, 13);
+                if (!tempArrays.contains(randomNumberLN)) {
+                    tempArrays.add(randomNumberLN);
+                    amountOfTimesArray2LN.set((randomNumberLN - 1), amountOfTimesArray2LN.get(randomNumberLN - 1) + 1);
+                } else {
+                    e--;
+                }
+            }
+            System.out.print(tempArrays + "  ");
+        }
+
+        //printing amount of times every number was appeared in random
+        System.out.print("\n\n   [");
+        for(Integer x: amountOfTimesArray2LN) {
+            System.out.print(x + ", ");
+        }
+        System.out.println("\b\b]\n\n");
+
+        //printing 2 numbers that appeared the most
+        ArrayList<Integer> copyOfAmountOfTimesArray2LN = new ArrayList<>();
+        copyOfAmountOfTimesArray2LN = amountOfTimesArray2LN;
+        ArrayList<Integer> highestNumbersLN = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            highestNumbersLN.add(copyOfAmountOfTimesArray2LN.indexOf(Collections.max(copyOfAmountOfTimesArray2LN)) + 1);
+            copyOfAmountOfTimesArray2LN.set((copyOfAmountOfTimesArray2LN.indexOf(Collections.max(copyOfAmountOfTimesArray2LN))), -1);
+        }
 
         // Printing 5 numbers that appeared most of the times
         ArrayList<Integer> copyOfAmountOfTimesArray = new ArrayList<>();
@@ -82,12 +124,14 @@ public class Main{
         }
         System.out.println("5 highest numbers: " + highestNumbers);
 
+        System.out.println("2 highest Lucky Numbers: " + highestNumbersLN);
+
     }
-    }
+}
 
 
-    
-    //First 2 tries of printing 5 highest numbers
+
+//First 2 tries of printing 5 highest numbers
      /*
         //1-st try (working version)
         for(int d = 0; d < 5;) {
